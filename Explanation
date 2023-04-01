@@ -1,0 +1,50 @@
+# Colors-app-swift
+
+This is a simple iOS app called "Colors-app" that displays a table view of randomly generated colors. 
+When a user taps on a color, the app navigates to a detail view controller that shows the selected color. Let's go through the code file by file:
+
+
+
+ColorsTableVC.swift:
+
+This file defines a view controller class ColorsTableVC that displays a table view of colors.
+colors is an array of UIColor objects that will be displayed in the table view.
+
+Cells and Segues are enums that define identifiers for the table view cells and segues.
+
+viewDidLoad is a method that gets called when the view controller loads. In this case, it calls addRandomColors to populate the colors array with 50 randomly generated colors.
+
+addRandomColors is a method that generates 50 random colors and adds them to the colors array.
+
+prepare(for segue: UIStoryboardSegue, sender: Any?) is a method that gets called when a segue is about to be performed. 
+In this case, it sets the color property of the destination view controller (ColorsDetailsVC) to the color of the selected table view cell.
+This is done using the sender parameter, which is passed in when the segue is performed.
+
+The extension ColorsTableVC: UITableViewDelegate, UITableViewDataSource extends the view controller to conform to the UITableViewDelegate and UITableViewDataSource protocols. 
+These protocols define methods that control the behavior of the table view.
+
+tableView(_:numberOfRowsInSection:) is a method that returns the number of rows in the table view. In this case, it returns the number of colors in the colors array.
+tableView(_:cellForRowAt:) is a method that returns a table view cell for a given row. 
+In this case, it dequeues a reusable table view cell with the identifier Cells.colorCell and sets its background color to the color at the corresponding index in the colors array.
+tableView(_:didSelectRowAt:) is a method that gets called when a table view cell is selected. 
+In this case, it gets the color at the selected row and performs a segue to the detail view controller (ColorsDetailsVC), passing the color as the sender parameter.
+
+
+
+ColorsDetailsVC.swift:
+
+This file defines a view controller class ColorsDetailsVC that displays a single color.
+color is a property that holds the color to be displayed.
+
+viewDidLoad is a method that gets called when the view controller loads. 
+In this case, it sets the background color of the view to the color property if it is not nil. If color is nil, it sets the background color to blue.
+
+
+
+UIColor+Ext.swift:
+
+This file defines an extension of the UIColor class that adds a static method random() that generates a random color. 
+The method returns a UIColor object with random RGB values between 0 and 1, and an alpha value of 1.
+
+
+That's it! This app generates random colors and displays them in a table view, allowing the user to select a color to view in more detail.
